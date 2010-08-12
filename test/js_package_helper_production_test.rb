@@ -37,7 +37,7 @@ class JsPackageHelperProductionTest < Test::Unit::TestCase
 
   def build_packages_once
     unless @@packages_built
-      Synthesis::JsPackage.build_all
+      Synthesis::JsPackage.build
       @@packages_built = true
     end
   end

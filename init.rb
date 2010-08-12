@@ -1,3 +1,3 @@
-require 'synthesis/asset_package'
-require 'synthesis/asset_package_helper'
-ActionView::Base.send :include, Synthesis::AssetPackageHelper
+require 'synthesis/js_package'
+require 'synthesis/js_package_helper'
+ActionView::Base.send :include, Synthesis::JsPackageHelper

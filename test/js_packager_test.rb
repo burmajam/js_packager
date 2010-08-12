@@ -10,11 +10,11 @@ class JsPackagerTest < Test::Unit::TestCase
     Synthesis::JsPackage.js_packages_yml = YAML.load_file("#{Rails.root}/vendor/plugins/js_packager/test/js_packages.yml")
 
     Synthesis::JsPackage.any_instance.stubs(:log)
-    Synthesis::JsPackage.build_all
+    Synthesis::JsPackage.build
   end
   
   def teardown
-    Synthesis::JsPackage.delete_all
+    Synthesis::JsPackage.delete_builds
   end
   
   def test_find_by_type
@@ -37,13 +37,13 @@ class JsPackagerTest < Test::Unit::TestCase
   end
   
   def test_delete_and_build
-    Synthesis::JsPackage.delete_all
+    Synthesis::JsPackage.delete_builds
     js_package_names = Dir.new(Synthesis::JsPackage.js_base_path).entries.delete_if { |x| ! (x =~ /\A\w+_packaged.js/) }
     css_subdir_package_names = Dir.new("#{Synthesis::JsPackage.js_base_path}/stylesheets/subdir").entries.delete_if { |x| ! (x =~ /\A\w+_packaged.css/) }
 
     assert_equal 0, js_package_names.length
 
-    Synthesis::JsPackage.build_all
+    Synthesis::JsPackage.build
     js_package_names = Dir.new(Synthesis::JsPackage.js_base_path).entries.delete_if { |x| ! (x =~ /\A\w+_packaged.js/) }.sort
     
     assert_equal 2, js_package_names.length

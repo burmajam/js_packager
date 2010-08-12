@@ -1,22 +1,22 @@
 require 'yaml'
 require File.dirname(__FILE__) + '/../../lib/synthesis/js_package'
 
-namespace :asset do
+namespace :js do
   namespace :packager do
 
-    desc "Merge and compress assets"
-    task :build_all do
-      Synthesis::AssetPackage.build_all
+    desc "Merge and compress javascript files"
+    task :build do
+      Synthesis::JsPackage.build
     end
 
-    desc "Delete all asset builds"
-    task :delete_all do
-      Synthesis::AssetPackage.delete_all
+    desc "Delete all javascript builds"
+    task :delete_builds do
+      Synthesis::JsPackage.delete_builds
     end
 
-    desc "Generate asset_packages.yml from existing assets"
+    desc "Generate js_packages.yml from existing javascript files"
     task :create_yml do
-      Synthesis::AssetPackage.create_yml
+      Synthesis::JsPackage.create_yml
     end
 
   end
