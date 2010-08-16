@@ -44,8 +44,10 @@ www.crockford.com
    rails plugin install git://github.com/burmajam/js_packager.git
 
 2. Run the rake task "js:packager:create_yml" to generate the /config/js_packages.yml
-file the first time. You will need to reorder files under 'base' so dependencies are loaded 
+file the first time. You will need to reorder files under 'application' so dependencies are loaded 
 in correct order. Feel free to rename or create new file packages.
+
+3. Also /app/javascripts folder is created. It is root for js files that will be compressed
 
 IMPORTANT: JavaScript files can break once compressed if each statement doesn't end with a semi-colon.
 The minifier puts multiple statements on one line, so if the semi-colon is missing, the statement may no 
@@ -62,6 +64,8 @@ base:
 - dragdrop
 - controls
 - application
+- controllers/*
+- views/**/*
 
 Multiple packages:
 
@@ -75,6 +79,8 @@ base:
 secondary:
 - foo
 - bar
+- views/**/*
+
 
 3. Run the rake task "js:packager:build" to generate the compressed, merged versions
 for each package. Whenever you rearrange the yaml file, you'll need to run this task again. 
@@ -93,7 +99,7 @@ to run the rake task when deploying, its just recommended for speeding up initia
 Example call (based on above /config/js_packages.yml):
   <%= javascript_include_merged :base %>
 
-In development, this generates: 
+In development, this generates: #NOT done yet
   <script type="text/javascript" src="/javascripts/prototype.js?1228027240"></script>
   <script type="text/javascript" src="/javascripts/effects.js?1228027240"></script>
   <script type="text/javascript" src="/javascripts/controls.js?1228027240"></script>

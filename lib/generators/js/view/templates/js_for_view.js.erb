@@ -1,0 +1,6 @@
+<%= "#{Rails.application.class.to_s.split(':').first}.Views.#{name.titleize}_#{@view_name.titleize}" %> = {
+	init: function(){
+	  alert("I\'m in RAILS_ROOT/app/javascripts/views/<%= name.downcase %>/<%= @view_name %>.js");
+      $("h1").fadeOut('slow').delay(800).fadeIn('slow');
+	}
+};
