@@ -1,7 +1,7 @@
-<%= "#{Rails.application.class.to_s.split(':').first}.Views.#{name.titleize}_#{@view_name.titleize}" %> = {
+<%= "#{Rails.application.class.to_s.split(':').first}.Views.#{name.camelize}_#{@view_name.titleize}" %> = {
 	init: function(){
-      $("form :input:visible:enabled:first").focus();
-	  alert("I\'m in RAILS_ROOT/app/javascripts/views/<%= name.downcase %>/<%= @view_name %>.js");
+      $("form :input:visible:enabled:first").focus().select();
+	  alert("I\'m in RAILS_ROOT/app/javascripts/views/<%= name.underscore %>/<%= @view_name %>.js");
       $("h1").fadeOut('slow').delay(800).fadeIn('slow');
 	}
 };
